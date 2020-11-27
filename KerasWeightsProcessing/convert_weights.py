@@ -6,14 +6,14 @@ import numpy as np
 
 import numpy as np
 import math
-import keras
-import keras.backend as K
-from keras.models import Sequential, Model
-from keras.layers import Dense, Dropout, BatchNormalization
-from keras.layers import Input, Activation
-from keras import optimizers
+import tensorflow.keras as keras
+import tensorflow.keras.backend as K
+from tensorflow.keras.models import Sequential, Model
+from tensorflow.keras.layers import Dense, Dropout, BatchNormalization
+from tensorflow.keras.layers import Input, Activation
+from tensorflow.keras import optimizers
 
-INPUT = ['input']
+INPUT = ['inputlayer']
 ACTIVATIONS = ['relu', 'linear', 'leakyrelu', 'sigmoid']
 SUPPORTED_LAYERS = ['dense', 'dropout', 'batchnormalization'] + ACTIVATIONS + INPUT
 
@@ -205,7 +205,7 @@ def h5_to_txt(weights_file_name, output_file_name=''):
             class_name = layer['class_name'].lower()
 
             if class_name not in SUPPORTED_LAYERS:
-                warnings.warn('Unsupported layer found! Skipping...')
+                warnings.warn('Unsupported layer found! Skipping...{0}'.format(class_name))
                 continue
             elif class_name == 'dense':
                 # get weights and biases out of dictionary
